@@ -1,34 +1,126 @@
+/* small reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* base sizing (kept your 22px root) */
 html {
-    font-size: 22px;
+  font-size: 22px;
 }
 
+/* page container */
 body {
-    text-align: center;
-    min-height: 100vh;
-    max-width: 800px;
-    margin: 0 auto;
+  text-align: center;
+  min-height: 100vh;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #111;
+  background: #fff; /* change as needed */
+}
+
+/* NAVIGATION - works for both <nav><ul><li><a> and <nav><a> patterns */
+nav {
+  margin: 1rem 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.25rem;           /* flexible spacing instead of word-spacing */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;        /* wrap if the viewport is narrow */
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  display: block;
+}
+
+nav a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  transition: background-color .18s ease, transform .12s ease;
+  font-weight: 500;
+}
+
+/* also cover the case where anchors are direct children of nav (no ul) */
+nav > a {
+  margin: 0 0.5rem;
+}
+
+/* hover / focus */
+nav a:hover,
+nav a:focus {
+  background-color: #333;
+  color: #fff;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+nav a:focus-visible {
+  outline: 3px solid #ffd54f;
+  outline-offset: 3px;
+}
+
+/* remove the old li rule that used word-spacing */
+li {
+  /* keep inline/block decisions to nav rules above; reset word-spacing */
+  word-spacing: normal;
+}
+
+/* TABLE STYLING */
+table {
+  margin: 0 auto;
+  width: 100%;
+  border-collapse: collapse; /* apply collapse on table, not on cells */
+}
+
+th,
+td {
+  background-color: papayawhip;
+  border: 1px solid #333;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+/* caption styling (optional) */
+caption {
+  caption-side: bottom;
+  padding: 0.25rem;
+  font-style: italic;
+  background: transparent;
+  border: none;
+}
+
+/* Small-screen responsiveness */
+@media (max-width: 600px) {
+  html {
+    font-size: 18px; /* slightly smaller root on phones */
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+
+  /* remove big side borders on tiny screens so content can use full width */
+  body {
+    max-width: 100%;
+    border-left: none;
+    border-right: none;
     padding: 1rem;
-    border-left: 1px solid #333;
-    border-right: 1px solid #333;
-}
-
-li a {
-    text-decoration:none;
-}
-li{
-    display: inline-block;
-    word-spacing: 2rem;
-    
-}
-
-th, td, caption {
-    
-    background-color: papayawhip;
-    border: 1px solid #333;
-    font-family: 'Courier New', Courier, monospace;
-    border-collapse: separate;
-    padding: 0.5rem;
-}
-table{
-     margin: 0 auto;
+  }
 }
